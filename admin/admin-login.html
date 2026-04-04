@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - ShopEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        body { background: linear-gradient(135deg, #0A1F44 0%, #1D4ED8 100%); }
+        .admin-login-info { margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.1); border-radius: 8px; text-align: center; }
+        .admin-login-info p { color: rgba(255,255,255,0.8); font-size: 13px; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="auth-page" style="background: transparent;">
+        <div class="auth-container">
+            <div class="auth-header">
+                <a href="../index.html" class="logo">
+                    <span>🛒</span> Shop<span>Ease</span>
+                </a>
+                <h1>Admin Portal</h1>
+                <p style="color: var(--text-light);">Login to manage your store</p>
+            </div>
+
+            <form class="auth-form" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="admin-email" value="admin@shopease.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="admin-password" value="admin123" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Login as Admin</button>
+            </form>
+
+            <div class="auth-footer">
+                <p><a href="../index.html" style="color: var(--accent);">← Back to Store</a></p>
+            </div>
+
+            <div class="admin-login-info">
+                <p>Demo Admin Credentials:</p>
+                <p>Email: admin@shopease.com</p>
+                <p>Password: admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (email === 'admin@shopease.com' && password === 'admin123') {
+                setCurrentUser({
+                    id: 1,
+                    name: 'Admin',
+                    email: 'admin@shopease.com',
+                    isAdmin: true
+                });
+                showToast('Welcome, Admin!', 'success');
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                showToast('Invalid admin credentials', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

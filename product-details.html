@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span>📞 Hotline: 01612345678</span>
+                <span>🚚 Free Delivery on orders over ৳2000</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <span>🛒</span> Shop<span>Ease</span>
+                </a>
+                <form id="search-form" class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search products...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="header-actions">
+                    <a href="cart.html" class="header-action">
+                        <span class="icon">🛒</span>
+                        <span class="count cart-count">0</span>
+                    </a>
+                    <div class="auth-buttons" style="display: flex; gap: 12px;">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                    </div>
+                    <div class="user-dropdown hidden">
+                        <a href="user-dashboard.html" class="header-action">
+                            <span class="icon">👤</span>
+                            <span class="user-name">Account</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <div class="container">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link active">Products</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="section">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="products.html">Products</a>
+                <span>/</span>
+                <span id="breadcrumb-product">Product</span>
+            </div>
+
+            <!-- Product Detail -->
+            <div class="product-detail" id="product-detail">
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img id="main-product-image" src="" alt="Product">
+                    </div>
+                    <div class="thumbnail-list" id="thumbnail-list">
+                        <!-- Thumbnails loaded by JS -->
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="product-detail-info" id="product-info">
+                    <!-- Content loaded by JS -->
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div style="margin-top: 48px;">
+                <div class="product-features" id="product-features">
+                    <!-- Features loaded by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews-section" style="background-color: var(--secondary);">
+        <div class="container">
+            <div class="reviews-header">
+                <h2 class="section-title">Customer Reviews</h2>
+            </div>
+            
+            <!-- Rating Summary -->
+            <div id="rating-summary" class="reviews-summary">
+                <!-- Loaded by JS -->
+            </div>
+
+            <!-- Review Form -->
+            <div class="review-form" id="review-form">
+                <h3>Write a Review</h3>
+                <form onsubmit="submitReview(event)">
+                    <div class="star-rating-input">
+                        <span onclick="selectRating(1)">★</span>
+                        <span onclick="selectRating(2)">★</span>
+                        <span onclick="selectRating(3)">★</span>
+                        <span onclick="selectRating(4)">★</span>
+                        <span onclick="selectRating(5)">★</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Review</label>
+                        <textarea id="review-comment" rows="4" placeholder="Share your experience with this product..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+
+            <!-- Reviews List -->
+            <div class="reviews-list" id="reviews-list">
+                <!-- Reviews loaded by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Products -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Similar Products</h2>
+            </div>
+            <div class="products-grid" id="similar-products">
+                <!-- Loaded by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2024 ShopEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-box">
+            <div class="chat-header">
+                <h4>💬 Chat with Us</h4>
+                <button class="chat-close" onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-body">
+                <div class="chat-message bot">
+                    <span class="message">Hello! How can I help you today?</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message...">
+                <button class="chat-send-btn">➤</button>
+            </div>
+        </div>
+        <button class="chat-toggle" onclick="toggleChat()">💬</button>
+    </div>
+
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script src="data/categories.js"></script>
+    <script src="data/products.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/review.js"></script>
+    
+    <script>
+        let currentProduct = null;
+        let quantity = 1;
+        
+        function loadProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (!productId) {
+                showToast('Product not found', 'error');
+                setTimeout(() => window.location.href = 'products.html', 2000);
+                return;
+            }
+            
+            currentProduct = getProductById(productId);
+            
+            if (!currentProduct) {
+                showToast('Product not found', 'error');
+                setTimeout(() => window.location.href = 'products.html', 2000);
+                return;
+            }
+            
+            renderProductDetail();
+            renderProductReviews();
+            renderSimilarProducts();
+        }
+        
+        function renderProductDetail() {
+            const p = currentProduct;
+            const discountedPrice = p.price - (p.price * p.discount / 100);
+            const stockStatus = p.stock > 5 ? 'In Stock' : p.stock > 0 ? `Only ${p.stock} left` : 'Out of Stock';
+            const stockClass = p.stock > 5 ? '' : p.stock > 0 ? 'low' : 'out';
+            
+            document.getElementById('breadcrumb-product').textContent = p.name;
+            document.title = `${p.name} - ShopEase`;
+            
+            // Main image
+            document.getElementById('main-product-image').src = p.images[0];
+            document.getElementById('main-product-image').alt = p.name;
+            
+            // Thumbnails
+            document.getElementById('thumbnail-list').innerHTML = p.images.map((img, i) => `
+                <div class="thumbnail ${i === 0 ? 'active' : ''}" onclick="changeImage('${img}', this)">
+                    <img src="${img}" alt="Thumbnail ${i + 1}">
+                </div>
+            `).join('');
+            
+            // Product info
+            document.getElementById('product-info').innerHTML = `
+                <span style="color: var(--text-light); text-transform: uppercase; font-size: 12px; font-weight: 600;">${getCategoryName(p.category)}</span>
+                <h1>${p.name}</h1>
+                
+                <div class="product-meta">
+                    <div class="product-meta-item">
+                        <span class="stars">${renderStars(p.rating)}</span>
+                        <span>${p.rating} (${p.reviewCount} reviews)</span>
+                    </div>
+                    <div class="product-meta-item">
+                        <span class="stock-status ${stockClass}">${stockStatus}</span>
+                    </div>
+                </div>
+                
+                <div class="product-detail-price">
+                    <span class="price-current">${formatPrice(Math.round(discountedPrice))}</span>
+                    ${p.discount > 0 ? `
+                        <span class="price-old">${formatPrice(p.price)}</span>
+                        <span class="discount-tag">-${p.discount}%</span>
+                    ` : ''}
+                </div>
+                
+                <p class="product-description">${p.description}</p>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">Quantity</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="updateQuantity(-1)">−</button>
+                            <span class="quantity-value" id="quantity-value">${quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="add-to-cart-section">
+                    <button class="btn btn-primary btn-lg" onclick="addToCartWithQuantity()">
+                        🛒 Add to Cart
+                    </button>
+                    <button class="btn btn-accent btn-lg" onclick="buyNowWithQuantity()">
+                        ⚡ Buy Now
+                    </button>
+                </div>
+            `;
+            
+            // Features
+            const features = [
+                { icon: '🚚', text: 'Free delivery over ৳2000' },
+                { icon: '🔄', text: '7-day easy return' },
+                { icon: '💳', text: 'Secure payment' },
+                { icon: '📞', text: '24/7 support' }
+            ];
+            
+            document.getElementById('product-features').innerHTML = features.map(f => `
+                <div class="feature-item">
+                    <div class="feature-icon">${f.icon}</div>
+                    <span class="feature-text">${f.text}</span>
+                </div>
+            `).join('');
+        }
+        
+        function changeImage(src, thumb) {
+            document.getElementById('main-product-image').src = src;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        }
+        
+        function updateQuantity(change) {
+            const newQty = quantity + change;
+            if (newQty >= 1 && newQty <= currentProduct.stock) {
+                quantity = newQty;
+                document.getElementById('quantity-value').textContent = quantity;
+            }
+        }
+        
+        function addToCartWithQuantity() {
+            addToCart(currentProduct.id, quantity);
+        }
+        
+        function buyNowWithQuantity() {
+            addToCart(currentProduct.id, quantity);
+            window.location.href = 'checkout.html';
+        }
+        
+        let selectedRating = 0;
+        
+        function selectRating(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('.star-rating-input span');
+            stars.forEach((star, i) => {
+                if (i < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+        
+        function submitReview(event) {
+            event.preventDefault();
+            
+            const comment = document.getElementById('review-comment').value.trim();
+            
+            if (selectedRating === 0) {
+                showToast('Please select a rating', 'error');
+                return;
+            }
+            
+            if (!comment) {
+                showToast('Please write a review', 'error');
+                return;
+            }
+            
+            const currentUser = getCurrentUser();
+            if (!currentUser) {
+                showToast('Please login to submit a review', 'warning');
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            
+            const review = {
+                id: 'REV' + Date.now(),
+                productId: currentProduct.id,
+                productName: currentProduct.name,
+                reviewerName: currentUser.name,
+                reviewerEmail: currentUser.email,
+                rating: selectedRating,
+                comment: comment,
+                helpful: 0,
+                createdAt: new Date().toISOString()
+            };
+            
+            const reviews = getReviews();
+            reviews.unshift(review);
+            localStorage.setItem('shopease_reviews', JSON.stringify(reviews));
+            
+            selectedRating = 0;
+            selectRating(0);
+            document.getElementById('review-comment').value = '';
+            
+            showToast('Review submitted! Thank you.', 'success');
+            renderProductReviews();
+        }
+        
+        function getReviews() {
+            return JSON.parse(localStorage.getItem('shopease_reviews')) || [];
+        }
+        
+        function renderProductReviews() {
+            const reviews = getReviews().filter(r => r.productId === currentProduct.id);
+            const container = document.getElementById('reviews-list');
+            
+            if (reviews.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <p style="font-size: 32px; margin-bottom: 12px;">📝</p>
+                        <p style="color: var(--text-light);">No reviews yet. Be the first!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = reviews.map(review => `
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">${review.reviewerName.charAt(0).toUpperCase()}</div>
+                            <div>
+                                <span class="reviewer-name">${review.reviewerName}</span>
+                                <div class="review-stars">${renderStars(review.rating)}</div>
+                            </div>
+                        </div>
+                        <span class="review-date">${formatDate(review.createdAt)}</span>
+                    </div>
+                    <p class="review-content">${review.comment}</p>
+                    <div class="review-actions">
+                        <button class="helpful-btn" onclick="markHelpful('${review.id}')">
+                            👍 Helpful (${review.helpful || 0})
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function markHelpful(reviewId) {
+            const reviews = getReviews();
+            const review = reviews.find(r => r.id === reviewId);
+            if (review) {
+                review.helpful = (review.helpful || 0) + 1;
+                localStorage.setItem('shopease_reviews', JSON.stringify(reviews));
+                showToast('Marked as helpful!', 'success');
+                renderProductReviews();
+            }
+        }
+        
+        function renderSimilarProducts() {
+            const similar = products
+                .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+                .slice(0, 4);
+            
+            document.getElementById('similar-products').innerHTML = 
+                similar.map(p => renderProductCard(p)).join('');
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadProduct);
+    </script>
+</body>
+</html>

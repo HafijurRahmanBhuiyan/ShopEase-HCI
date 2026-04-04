@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ShopEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="admin-page">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">🛒 Shop<span>Ease</span></div>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-link active">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="manage-products.html" class="admin-nav-link">
+                    <span class="icon">📦</span>
+                    <span>Products</span>
+                </a>
+                <a href="manage-categories.html" class="admin-nav-link">
+                    <span class="icon">📁</span>
+                    <span>Categories</span>
+                </a>
+                <a href="manage-orders.html" class="admin-nav-link">
+                    <span class="icon">🛍️</span>
+                    <span>Orders</span>
+                </a>
+                <a href="manage-users.html" class="admin-nav-link">
+                    <span class="icon">👥</span>
+                    <span>Users</span>
+                </a>
+                <a href="manage-reviews.html" class="admin-nav-link">
+                    <span class="icon">⭐</span>
+                    <span>Reviews</span>
+                </a>
+                <a href="support-requests.html" class="admin-nav-link">
+                    <span class="icon">📞</span>
+                    <span>Support</span>
+                </a>
+                <a href="#" class="admin-nav-link" onclick="adminLogout()">
+                    <span class="icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Dashboard Overview</h1>
+                <a href="../index.html" class="btn btn-secondary btn-sm">← View Store</a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">📦</div>
+                    </div>
+                    <div class="stat-card-value" id="stat-products">0</div>
+                    <div class="stat-card-label">Total Products</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">🛍️</div>
+                    </div>
+                    <div class="stat-card-value" id="stat-orders">0</div>
+                    <div class="stat-card-label">Total Orders</div>
+                    <span class="stat-card-change positive" id="stat-pending">0 pending</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">👥</div>
+                    </div>
+                    <div class="stat-card-value" id="stat-users">0</div>
+                    <div class="stat-card-label">Total Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">💰</div>
+                    </div>
+                    <div class="stat-card-value" id="stat-revenue">৳0</div>
+                    <div class="stat-card-label">Total Revenue</div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="admin-table-container" style="margin-top: 32px;">
+                <div class="admin-table-header">
+                    <h3>Recent Orders</h3>
+                    <a href="manage-orders.html" class="btn btn-sm btn-secondary">View All</a>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-orders-body">
+                        <!-- Loaded by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../data/products.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+    
+    <script>
+        function adminLogout() {
+            setCurrentUser(null);
+            showToast('Logged out successfully', 'success');
+            window.location.href = 'admin-login.html';
+        }
+        
+        function renderRecentOrders() {
+            const orders = getAllOrders().slice(0, 5);
+            const tbody = document.getElementById('recent-orders-body');
+            
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 40px;">No orders yet</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = orders.map(order => `
+                <tr>
+                    <td><strong>${order.id}</strong></td>
+                    <td>${order.customerName}</td>
+                    <td>${formatPrice(order.total)}</td>
+                    <td><span class="status-badge ${order.status}">${order.status}</span></td>
+                    <td>${formatDate(order.createdAt)}</td>
+                </tr>
+            `).join('');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboardStats();
+            renderRecentOrders();
+        });
+    </script>
+</body>
+</html>

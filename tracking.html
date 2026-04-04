@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-main" style="padding: 20px 0;">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <span>🛒</span> Shop<span>Ease</span>
+                </a>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <a href="cart.html" class="header-action">
+                        <span class="icon">🛒</span>
+                        <span class="count cart-count">0</span>
+                    </a>
+                    <a href="user-dashboard.html" class="btn btn-secondary btn-sm">My Account</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tracking-page" id="tracking-page">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="user-dashboard.html">My Account</a>
+                <span>/</span>
+                <span>Order Tracking</span>
+            </div>
+
+            <!-- Tracking Header -->
+            <div class="tracking-header">
+                <h1>Order Tracking</h1>
+                <p>Order ID: <span class="order-id" id="order-id">Loading...</span></p>
+                <div class="tracking-status-badge" id="status-badge">
+                    <span id="order-status">Processing</span>
+                </div>
+            </div>
+
+            <!-- Tracking Timeline -->
+            <div class="tracking-timeline">
+                <div class="timeline" id="tracking-timeline">
+                    <!-- Timeline loaded by JS -->
+                </div>
+            </div>
+
+            <!-- Delivery Info -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- Rider Card (for shipped orders) -->
+                <div class="delivery-info">
+                    <h3>📦 Delivery Info</h3>
+                    <div class="rider-card">
+                        <div class="rider-avatar">🚴</div>
+                        <div class="rider-info">
+                            <h4>Delivery Rider</h4>
+                            <p>Rahim Ahmed</p>
+                            <p>📞 01712345678</p>
+                        </div>
+                        <button class="btn btn-success btn-sm call-rider-btn">
+                            📞 Call Rider
+                        </button>
+                    </div>
+                    <div class="delivery-address" id="delivery-address">
+                        <!-- Loaded by JS -->
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="delivery-info">
+                    <h3>📋 Order Summary</h3>
+                    <div class="order-items" id="order-items-list" style="max-height: 300px; overflow-y: auto;">
+                        <!-- Loaded by JS -->
+                    </div>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Estimated Delivery:</span>
+                            <strong id="estimated-delivery">3-5 days</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div style="margin-top: 48px; text-align: center;">
+                <p style="color: var(--text-light); margin-bottom: 16px;">Need help with your order?</p>
+                <div style="display: flex; gap: 16px; justify-content: center;">
+                    <a href="tel:01612345678" class="btn btn-secondary">
+                        📞 Call Support
+                    </a>
+                    <a href="user-dashboard.html" class="btn btn-primary">
+                        ← Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2024 ShopEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script src="data/products.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/tracking.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

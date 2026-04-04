@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Categories - ShopEase Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="admin-page">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">🛒 Shop<span>Ease</span></div>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-link"><span class="icon">📊</span><span>Dashboard</span></a>
+                <a href="manage-products.html" class="admin-nav-link"><span class="icon">📦</span><span>Products</span></a>
+                <a href="manage-categories.html" class="admin-nav-link active"><span class="icon">📁</span><span>Categories</span></a>
+                <a href="manage-orders.html" class="admin-nav-link"><span class="icon">🛍️</span><span>Orders</span></a>
+                <a href="manage-users.html" class="admin-nav-link"><span class="icon">👥</span><span>Users</span></a>
+                <a href="manage-reviews.html" class="admin-nav-link"><span class="icon">⭐</span><span>Reviews</span></a>
+                <a href="support-requests.html" class="admin-nav-link"><span class="icon">📞</span><span>Support</span></a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Manage Categories</h1>
+                <button class="btn btn-primary" onclick="openAddCategoryModal()">➕ Add Category</button>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Icon</th>
+                            <th>Products</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categories-table-body"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Category</h3>
+                <button class="modal-close" onclick="closeModal('category-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Category Name *</label>
+                    <input type="text" id="category-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Icon (Emoji)</label>
+                    <input type="text" id="category-icon" placeholder="📱">
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="category-image" placeholder="https://...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('category-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveCategory()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../data/categories.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        function openAddCategoryModal() {
+            openModal('category-modal');
+        }
+        
+        function saveCategory() {
+            const name = document.getElementById('category-name').value.trim();
+            const icon = document.getElementById('category-icon').value.trim() || '📁';
+            const image = document.getElementById('category-image').value.trim();
+            
+            if (!name) {
+                showToast('Please enter category name', 'error');
+                return;
+            }
+            
+            let cats = getAdminCategories();
+            cats.push({
+                id: Date.now(),
+                name,
+                icon,
+                image: image || 'https://via.placeholder.com/400',
+                productCount: 0
+            });
+            saveAdminCategories(cats);
+            
+            closeModal('category-modal');
+            renderAdminCategories();
+            showToast('Category added!', 'success');
+        }
+    </script>
+</body>
+</html>

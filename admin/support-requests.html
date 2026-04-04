@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Requests - ShopEase Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="admin-page">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">🛒 Shop<span>Ease</span></div>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-link"><span class="icon">📊</span><span>Dashboard</span></a>
+                <a href="manage-products.html" class="admin-nav-link"><span class="icon">📦</span><span>Products</span></a>
+                <a href="manage-categories.html" class="admin-nav-link"><span class="icon">📁</span><span>Categories</span></a>
+                <a href="manage-orders.html" class="admin-nav-link"><span class="icon">🛍️</span><span>Orders</span></a>
+                <a href="manage-users.html" class="admin-nav-link"><span class="icon">👥</span><span>Users</span></a>
+                <a href="manage-reviews.html" class="admin-nav-link"><span class="icon">⭐</span><span>Reviews</span></a>
+                <a href="support-requests.html" class="admin-nav-link active"><span class="icon">📞</span><span>Support</span></a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Support Requests</h1>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="support-table-body"></tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 32px;">
+                <h3 style="margin-bottom: 16px;">FAQ Management</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do I track my order?</span>
+                            <span class="icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Go to your dashboard and click on "My Orders" to track your order status. You can also track from the tracking page using your order ID.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What payment methods do you accept?</span>
+                            <span class="icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept bKash, Nagad, Card payment, and Cash on Delivery (COD).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does delivery take?</span>
+                            <span class="icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Standard delivery takes 3-5 business days. Express delivery is available in Dhaka within 1-2 days.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is your return policy?</span>
+                            <span class="icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer 7-day easy returns on most products. Contact our support team to initiate a return.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

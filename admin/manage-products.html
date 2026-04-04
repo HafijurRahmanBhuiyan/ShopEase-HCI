@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - ShopEase Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="admin-page">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">🛒 Shop<span>Ease</span></div>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-link">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="manage-products.html" class="admin-nav-link active">
+                    <span class="icon">📦</span>
+                    <span>Products</span>
+                </a>
+                <a href="manage-categories.html" class="admin-nav-link">
+                    <span class="icon">📁</span>
+                    <span>Categories</span>
+                </a>
+                <a href="manage-orders.html" class="admin-nav-link">
+                    <span class="icon">🛍️</span>
+                    <span>Orders</span>
+                </a>
+                <a href="manage-users.html" class="admin-nav-link">
+                    <span class="icon">👥</span>
+                    <span>Users</span>
+                </a>
+                <a href="manage-reviews.html" class="admin-nav-link">
+                    <span class="icon">⭐</span>
+                    <span>Reviews</span>
+                </a>
+                <a href="support-requests.html" class="admin-nav-link">
+                    <span class="icon">📞</span>
+                    <span>Support</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Manage Products</h1>
+                <button class="btn btn-primary" onclick="openAddProductModal()">➕ Add Product</button>
+            </div>
+
+            <div class="admin-table-container">
+                <div class="admin-table-header">
+                    <h3>All Products (<span id="product-count">0</span>)</h3>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Rating</th>
+                            <th>Featured</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Loaded by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Product</h3>
+                <button class="modal-close" onclick="closeModal('product-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="product-form">
+                    <div class="form-group">
+                        <label>Product Name *</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="product-category" required>
+                                <option value="">Select Category</option>
+                                <option value="1">Electronics</option>
+                                <option value="2">Fashion</option>
+                                <option value="3">Groceries</option>
+                                <option value="4">Home & Living</option>
+                                <option value="5">Beauty</option>
+                                <option value="6">Sports</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (৳) *</label>
+                            <input type="number" id="product-price" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Discount (%)</label>
+                            <input type="number" id="product-discount" value="0" min="0" max="99">
+                        </div>
+                        <div class="form-group">
+                            <label>Stock *</label>
+                            <input type="number" id="product-stock" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="url" id="product-image" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="product-description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="product-featured">
+                            Featured Product
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('product-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveProduct()">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../data/categories.js"></script>
+    <script src="../data/products.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+    
+    <script>
+        let editingProductId = null;
+        
+        function openAddProductModal() {
+            editingProductId = null;
+            document.getElementById('modal-title').textContent = 'Add New Product';
+            document.getElementById('product-form').reset();
+            openModal('product-modal');
+        }
+        
+        function editProduct(productId) {
+            const adminProducts = getAdminProducts();
+            const product = adminProducts.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            editingProductId = productId;
+            document.getElementById('modal-title').textContent = 'Edit Product';
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-discount').value = product.discount || 0;
+            document.getElementById('product-stock').value = product.stock;
+            document.getElementById('product-image').value = product.images[0] || '';
+            document.getElementById('product-description').value = product.description || '';
+            document.getElementById('product-featured').checked = product.featured || false;
+            
+            openModal('product-modal');
+        }
+        
+        function saveProduct() {
+            const name = document.getElementById('product-name').value.trim();
+            const category = parseInt(document.getElementById('product-category').value);
+            const price = parseFloat(document.getElementById('product-price').value);
+            const discount = parseInt(document.getElementById('product-discount').value) || 0;
+            const stock = parseInt(document.getElementById('product-stock').value);
+            const image = document.getElementById('product-image').value.trim();
+            const description = document.getElementById('product-description').value.trim();
+            const featured = document.getElementById('product-featured').checked;
+            
+            if (!name || !category || !price || !stock) {
+                showToast('Please fill all required fields', 'error');
+                return;
+            }
+            
+            let adminProducts = getAdminProducts();
+            
+            if (editingProductId) {
+                const index = adminProducts.findIndex(p => p.id === editingProductId);
+                if (index !== -1) {
+                    adminProducts[index] = {
+                        ...adminProducts[index],
+                        name,
+                        category,
+                        price,
+                        discount,
+                        stock,
+                        images: [image || 'https://via.placeholder.com/400'],
+                        description,
+                        featured
+                    };
+                }
+            } else {
+                const newProduct = {
+                    id: Date.now(),
+                    name,
+                    category,
+                    price,
+                    discount,
+                    stock,
+                    images: [image || 'https://via.placeholder.com/400'],
+                    description,
+                    featured,
+                    rating: 4.5,
+                    reviewCount: 0
+                };
+                adminProducts.push(newProduct);
+            }
+            
+            saveAdminProducts(adminProducts);
+            closeModal('product-modal');
+            renderAdminProducts();
+            document.getElementById('product-count').textContent = adminProducts.length;
+            showToast(editingProductId ? 'Product updated!' : 'Product added!', 'success');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const adminProducts = getAdminProducts();
+            document.getElementById('product-count').textContent = adminProducts.length;
+            renderAdminProducts();
+        });
+    </script>
+</body>
+</html>

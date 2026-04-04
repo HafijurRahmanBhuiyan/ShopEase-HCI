@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Your Trusted Online Shop in Bangladesh</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span>📞 Hotline: 01612345678 | Order Online 24/7</span>
+                <span>🚚 Free Delivery on orders over ৳2000</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <span>🛒</span> Shop<span>Ease</span>
+                </a>
+                <form id="search-form" class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search products, categories, brands...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="header-actions">
+                    <a href="cart.html" class="header-action">
+                        <span class="icon">🛒</span>
+                        <span>Cart</span>
+                        <span class="count cart-count">0</span>
+                    </a>
+                    <div class="auth-buttons" style="display: flex; gap: 12px;">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                    </div>
+                    <div class="user-dropdown hidden" style="position: relative;">
+                        <a href="user-dashboard.html" class="header-action">
+                            <span class="icon">👤</span>
+                            <span class="user-name">Account</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <div class="container">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="products.html" class="nav-link">All Products</a>
+                <a href="products.html?category=1" class="nav-link">Electronics</a>
+                <a href="products.html?category=2" class="nav-link">Fashion</a>
+                <a href="products.html?category=3" class="nav-link">Groceries</a>
+                <a href="products.html?category=4" class="nav-link">Home & Living</a>
+                <a href="products.html?category=5" class="nav-link">Beauty</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Shop Smart, Save Big!</h1>
+                    <p>Discover amazing products at unbeatable prices. Quality guaranteed, fast delivery across Bangladesh.</p>
+                    <div class="hero-buttons">
+                        <a href="products.html" class="btn btn-secondary btn-lg">Shop Now</a>
+                        <a href="#categories" class="btn btn-lg" style="background: rgba(255,255,255,0.2); color: white;">Browse Categories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Shop by Category</h2>
+                    <p class="section-subtitle">Find exactly what you need</p>
+                </div>
+                <a href="products.html" class="view-all">View All →</a>
+            </div>
+            <div class="products-grid" id="categories-grid">
+                <!-- Categories loaded by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section" style="background-color: var(--secondary); padding: 60px 0;">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Featured Products</h2>
+                    <p class="section-subtitle">Handpicked just for you</p>
+                </div>
+                <a href="products.html" class="view-all">View All →</a>
+            </div>
+            <div class="products-grid" id="featured-products">
+                <!-- Products loaded by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" style="justify-content: center; text-align: center; margin-bottom: 48px;">
+                <div>
+                    <h2 class="section-title">Why Choose ShopEase?</h2>
+                    <p class="section-subtitle">We make online shopping easy for Bangladesh</p>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+                <div style="text-align: center; padding: 32px; background: var(--secondary); border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🚚</div>
+                    <h3 style="margin-bottom: 8px;">Fast Delivery</h3>
+                    <p style="color: var(--text-light);">Delivery across Bangladesh within 3-5 days</p>
+                </div>
+                <div style="text-align: center; padding: 32px; background: var(--secondary); border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">💰</div>
+                    <h3 style="margin-bottom: 8px;">Cash on Delivery</h3>
+                    <p style="color: var(--text-light);">Pay when you receive your order</p>
+                </div>
+                <div style="text-align: center; padding: 32px; background: var(--secondary); border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">🔄</div>
+                    <h3 style="margin-bottom: 8px;">Easy Returns</h3>
+                    <p style="color: var(--text-light);">7-day hassle-free return policy</p>
+                </div>
+                <div style="text-align: center; padding: 32px; background: var(--secondary); border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">📞</div>
+                    <h3 style="margin-bottom: 8px;">24/7 Support</h3>
+                    <p style="color: var(--text-light);">Always here to help you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="section" style="background-color: var(--secondary);">
+        <div class="container">
+            <div class="section-header" style="justify-content: center; text-align: center; margin-bottom: 32px;">
+                <div>
+                    <h2 class="section-title">Easy Payment Options</h2>
+                    <p class="section-subtitle">Multiple ways to pay securely</p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                <div style="padding: 20px 40px; background: var(--background); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 32px;">💳</span>
+                    <span style="font-weight: 600;">Card Payment</span>
+                </div>
+                <div style="padding: 20px 40px; background: var(--background); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 32px;">📱</span>
+                    <span style="font-weight: 600;">bKash</span>
+                </div>
+                <div style="padding: 20px 40px; background: var(--background); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 32px;">📱</span>
+                    <span style="font-weight: 600;">Nagad</span>
+                </div>
+                <div style="padding: 20px 40px; background: var(--background); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 32px;">💵</span>
+                    <span style="font-weight: 600;">Cash on Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <span>🛒</span> Shop<span>Ease</span>
+                    </div>
+                    <p>Your trusted online shopping destination in Bangladesh. Quality products, fast delivery, and excellent customer service.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="products.html">Products</a>
+                        <a href="cart.html">Cart</a>
+                        <a href="user-dashboard.html">My Account</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Categories</h4>
+                    <div class="footer-links">
+                        <a href="products.html?category=1">Electronics</a>
+                        <a href="products.html?category=2">Fashion</a>
+                        <a href="products.html?category=3">Groceries</a>
+                        <a href="products.html?category=4">Home & Living</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact Us</h4>
+                    <div class="footer-links">
+                        <a href="#">📞 01612345678</a>
+                        <a href="#">✉️ support@shopease.com</a>
+                        <a href="#">📍 Dhaka, Bangladesh</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 ShopEase. All rights reserved. Made with ❤️ in Bangladesh</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-box">
+            <div class="chat-header">
+                <h4>💬 Chat with Us</h4>
+                <button class="chat-close" onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-body">
+                <div class="chat-message bot">
+                    <span class="message">Hello! How can I help you today?</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message...">
+                <button class="chat-send-btn" onclick="sendChatMessage()">➤</button>
+            </div>
+        </div>
+        <button class="chat-toggle" onclick="toggleChat()">💬</button>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <!-- Scripts -->
+    <script src="data/categories.js"></script>
+    <script src="data/products.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // Render categories
+        function renderCategories() {
+            const container = document.getElementById('categories-grid');
+            if (!container) return;
+            
+            container.innerHTML = categories.map(cat => `
+                <a href="products.html?category=${cat.id}" class="product-card" style="text-decoration: none;">
+                    <div class="product-image">
+                        <img src="${cat.image}" alt="${cat.name}">
+                    </div>
+                    <div class="product-info" style="text-align: center;">
+                        <span style="font-size: 32px;">${cat.icon}</span>
+                        <h3 class="product-name">${cat.name}</h3>
+                        <p style="color: var(--text-light); font-size: 13px;">${cat.productCount} Products</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+        
+        // Render featured products
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featured-products');
+            if (!container) return;
+            
+            const featured = getFeaturedProducts().slice(0, 4);
+            container.innerHTML = featured.map(product => renderProductCard(product)).join('');
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderFeaturedProducts();
+        });
+    </script>
+</body>
+</html>

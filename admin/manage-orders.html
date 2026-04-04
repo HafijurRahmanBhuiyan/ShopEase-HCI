@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders - ShopEase Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="admin-page">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">🛒 Shop<span>Ease</span></div>
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-link"><span class="icon">📊</span><span>Dashboard</span></a>
+                <a href="manage-products.html" class="admin-nav-link"><span class="icon">📦</span><span>Products</span></a>
+                <a href="manage-categories.html" class="admin-nav-link"><span class="icon">📁</span><span>Categories</span></a>
+                <a href="manage-orders.html" class="admin-nav-link active"><span class="icon">🛍️</span><span>Orders</span></a>
+                <a href="manage-users.html" class="admin-nav-link"><span class="icon">👥</span><span>Users</span></a>
+                <a href="manage-reviews.html" class="admin-nav-link"><span class="icon">⭐</span><span>Reviews</span></a>
+                <a href="support-requests.html" class="admin-nav-link"><span class="icon">📞</span><span>Support</span></a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Manage Orders</h1>
+            </div>
+
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-card-value" id="stat-placed">0</div>
+                    <div class="stat-card-label">Placed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value" id="stat-confirmed">0</div>
+                    <div class="stat-card-label">Confirmed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value" id="stat-shipped">0</div>
+                    <div class="stat-card-label">Shipped</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value" id="stat-delivered">0</div>
+                    <div class="stat-card-label">Delivered</div>
+                </div>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .status-select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="../data/products.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+    
+    <script>
+        function updateOrderStats() {
+            const orders = getAllOrders();
+            document.getElementById('stat-placed').textContent = orders.filter(o => o.status === 'placed').length;
+            document.getElementById('stat-confirmed').textContent = orders.filter(o => o.status === 'confirmed').length;
+            document.getElementById('stat-shipped').textContent = orders.filter(o => o.status === 'shipped').length;
+            document.getElementById('stat-delivered').textContent = orders.filter(o => o.status === 'delivered').length;
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAdminOrders();
+            updateOrderStats();
+        });
+    </script>
+</body>
+</html>
