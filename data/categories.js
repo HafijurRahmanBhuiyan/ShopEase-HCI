@@ -39,7 +39,7 @@ const categories = [
         id: 6,
         name: "Sports",
         icon: "⚽",
-        image: "https://images.unsplash.com/photo-1461896836934-91c3c7cf3a53?w=400",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400",
         productCount: 18
     }
 ];

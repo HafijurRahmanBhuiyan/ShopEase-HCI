@@ -269,6 +269,19 @@ function handleLogin(event) {
         return;
     }
     
+    // Check for admin credentials
+    if (emailOrPhone === 'admin@shopease.com' && password === 'admin123') {
+        setCurrentUser({
+            id: 1,
+            name: 'Admin',
+            email: 'admin@shopease.com',
+            isAdmin: true
+        });
+        showToast('Welcome, Admin!', 'success');
+        window.location.href = 'admin/admin-dashboard.html';
+        return;
+    }
+    
     if (login(emailOrPhone, password)) {
         const redirect = new URLSearchParams(window.location.search).get('redirect');
         window.location.href = redirect || 'index.html';

@@ -248,10 +248,12 @@
             const container = document.getElementById('categories-grid');
             if (!container) return;
             
+            const fallbackImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Crect fill='%23f0f0f0' width='400' height='220'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='48' fill='%23999' text-anchor='middle' dy='.3em'%3E🛍️%3C/text%3E%3C/svg%3E";
+            
             container.innerHTML = categories.map(cat => `
                 <a href="products.html?category=${cat.id}" class="product-card" style="text-decoration: none;">
                     <div class="product-image">
-                        <img src="${cat.image}" alt="${cat.name}">
+                        <img src="${cat.image}" alt="${cat.name}" onerror="this.src='${fallbackImg}'">
                     </div>
                     <div class="product-info" style="text-align: center;">
                         <span style="font-size: 32px;">${cat.icon}</span>
