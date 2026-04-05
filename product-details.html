@@ -133,7 +133,7 @@
     </section>
 
     <!-- Similar Products -->
-    <section class="section">
+    <section class="section" id="similar-products-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Similar Products</h2>
@@ -316,8 +316,6 @@
             window.location.href = 'checkout.html';
         }
         
-        let selectedRating = 0;
-        
         function selectRating(rating) {
             selectedRating = rating;
             const stars = document.querySelectorAll('.star-rating-input span');
@@ -428,12 +426,36 @@
         }
         
         function renderSimilarProducts() {
-            const similar = products
-                .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
-                .slice(0, 4);
+            const container = document.getElementById('similar-products');
+            const section = document.getElementById('similar-products-section');
             
-            document.getElementById('similar-products').innerHTML = 
-                similar.map(p => renderProductCard(p)).join('');
+            if (!container) {
+                console.log('Similar products container not found');
+                return;
+            }
+            
+            if (!currentProduct) {
+                console.log('Current product not loaded');
+                return;
+            }
+            
+            console.log('Current product category:', currentProduct.category);
+            console.log('Current product id:', currentProduct.id);
+            console.log('Total products:', products.length);
+            
+            const similar = products
+                .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id);
+            
+            console.log('Similar products found:', similar.length);
+            
+            if (similar.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            const displayProducts = similar.slice(0, 8);
+            container.innerHTML = displayProducts.map(p => renderProductCard(p)).join('');
         }
         
         document.addEventListener('DOMContentLoaded', loadProduct);
