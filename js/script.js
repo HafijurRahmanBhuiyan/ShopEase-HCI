@@ -273,7 +273,7 @@ function sendChatMessage() {
     setTimeout(() => {
         const botMsg = document.createElement('div');
         botMsg.className = 'chat-message bot';
-        botMsg.innerHTML = `<span class="message">Thanks for your message! Our support team will get back to you shortly. For urgent queries, call: 01612345678</span>`;
+        botMsg.innerHTML = `<span class="message">Thanks for your message! Our support team will get back to you shortly. For urgent queries, call: 01786444587</span>`;
         chatBody.appendChild(botMsg);
         chatBody.scrollTop = chatBody.scrollHeight;
     }, 1000);
