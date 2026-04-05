@@ -36,15 +36,9 @@
                         <span>Cart</span>
                         <span class="count cart-count">0</span>
                     </a>
-                    <div class="auth-buttons" style="display: flex; gap: 12px;">
+                    <div id="auth-section" style="display: flex; gap: 12px; align-items: center;">
                         <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
                         <a href="register.html" class="btn btn-primary btn-sm">Register</a>
-                    </div>
-                    <div class="user-dropdown hidden">
-                        <a href="user-dashboard.html" class="header-action">
-                            <span class="icon">👤</span>
-                            <span class="user-name">Account</span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -297,9 +291,29 @@
             renderFilters();
             renderProducts();
             updatePageTitle();
+            updateAuthSection();
             
             document.getElementById('sort-select').addEventListener('change', renderProducts);
         });
+        
+        function updateAuthSection() {
+            const authSection = document.getElementById('auth-section');
+            if (!authSection) return;
+            
+            const user = getCurrentUser();
+            
+            if (user) {
+                authSection.innerHTML = `
+                    <a href="user-dashboard.html" style="font-weight: 600; color: var(--primary); text-decoration: none;">👤 ${user.name}</a>
+                    <button onclick="logout()" class="btn btn-secondary btn-sm">Logout</button>
+                `;
+            } else {
+                authSection.innerHTML = `
+                    <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                `;
+            }
+        }
     </script>
 </body>
 </html>

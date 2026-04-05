@@ -37,7 +37,7 @@
                         <span>Cart</span>
                         <span class="count cart-count">0</span>
                     </a>
-                    <div class="auth-buttons" style="display: flex; gap: 12px;">
+                    <div id="auth-section" style="display: flex; gap: 12px; align-items: center;">
                         <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
                         <a href="register.html" class="btn btn-primary btn-sm">Register</a>
                     </div>
@@ -273,10 +273,31 @@
             container.innerHTML = featured.map(product => renderProductCard(product)).join('');
         }
         
+        // Update auth section based on login status
+        function updateAuthSection() {
+            const authSection = document.getElementById('auth-section');
+            if (!authSection) return;
+            
+            const user = getCurrentUser();
+            
+            if (user) {
+                authSection.innerHTML = `
+                    <a href="user-dashboard.html" style="font-weight: 600; color: var(--primary); text-decoration: none;">👤 ${user.name}</a>
+                    <button onclick="logout()" class="btn btn-secondary btn-sm">Logout</button>
+                `;
+            } else {
+                authSection.innerHTML = `
+                    <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                `;
+            }
+        }
+        
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
             renderCategories();
             renderFeaturedProducts();
+            updateAuthSection();
         });
     </script>
 </body>

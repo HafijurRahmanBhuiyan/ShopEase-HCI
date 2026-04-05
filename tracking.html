@@ -24,7 +24,9 @@
                         <span class="icon">🛒</span>
                         <span class="count cart-count">0</span>
                     </a>
-                    <a href="user-dashboard.html" class="btn btn-secondary btn-sm">My Account</a>
+                    <div id="auth-section">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,5 +127,25 @@
     <script src="js/auth.js"></script>
     <script src="js/tracking.js"></script>
     <script src="js/cart.js"></script>
+    <script>
+        function updateAuthSection() {
+            const authSection = document.getElementById('auth-section');
+            if (!authSection) return;
+            
+            const user = getCurrentUser();
+            
+            if (user) {
+                authSection.innerHTML = `
+                    <a href="user-dashboard.html" style="font-weight: 600; color: var(--primary); text-decoration: none;">👤 ${user.name}</a>
+                    <button onclick="logout()" class="btn btn-secondary btn-sm">Logout</button>
+                `;
+            } else {
+                authSection.innerHTML = `
+                    <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                `;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateAuthSection);
+    </script>
 </body>
 </html>

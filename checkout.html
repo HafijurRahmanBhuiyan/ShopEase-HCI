@@ -19,8 +19,11 @@
                 <a href="index.html" class="logo">
                     <span>🛒</span> Shop<span>Ease</span>
                 </a>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-light);">
-                    <span style="color: var(--accent);">Checkout</span>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <span style="color: var(--text-light);">Checkout</span>
+                    <div id="auth-section">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -340,7 +343,26 @@
             }, 1500);
         }
         
+        function updateAuthSection() {
+            const authSection = document.getElementById('auth-section');
+            if (!authSection) return;
+            
+            const user = getCurrentUser();
+            
+            if (user) {
+                authSection.innerHTML = `
+                    <a href="user-dashboard.html" style="font-weight: 600; color: var(--primary); text-decoration: none;">👤 ${user.name}</a>
+                    <button onclick="logout()" class="btn btn-secondary btn-sm">Logout</button>
+                `;
+            } else {
+                authSection.innerHTML = `
+                    <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                `;
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', loadCheckout);
+        document.addEventListener('DOMContentLoaded', updateAuthSection);
     </script>
 </body>
 </html>
