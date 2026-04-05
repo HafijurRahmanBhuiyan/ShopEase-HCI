@@ -371,10 +371,10 @@ const products = [
         featured: false,
         description: "Durable plastic storage cabinet with 4 layers. Perfect for organizing clothes, kitchen items, and other household items. Easy to assemble.",
         images: [
-            "https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600",
-            "https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600",
-            "https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600",
-            "https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600"
+            "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600",
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600",
+            "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600",
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600"
         ],
         specs: {
             "Material": "PP Plastic",
@@ -510,10 +510,10 @@ const products = [
         featured: true,
         description: "Official size 5 training football from Adidas. Durable construction with seamless surface for better ball control. Perfect for practice and matches.",
         images: [
-            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600",
-            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600",
-            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600",
-            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600"
+            "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600",
+            "https://images.unsplash.com/photo-1600185389846-f4271f3a1161?w=600",
+            "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600",
+            "https://images.unsplash.com/photo-1608346128025-1896b97a6fa7?w=600"
         ],
         specs: {
             "Type": "Training Football",

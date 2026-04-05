@@ -74,11 +74,12 @@ function updateWishlistCount() {
 // Product Card Rendering
 function renderProductCard(product) {
     const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
+    const fallbackImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='220' viewBox='0 0 280 220'%3E%3Crect fill='%23f0f0f0' width='280' height='220'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='48' fill='%23999' text-anchor='middle' dy='.3em'%3E🛍️%3C/text%3E%3C/svg%3E";
     
     return `
         <div class="product-card" onclick="window.location.href='product-details.html?id=${product.id}'">
             <div class="product-image">
-                <img src="${product.images[0]}" alt="${product.name}" loading="lazy">
+                <img src="${product.images[0]}" alt="${product.name}" loading="lazy" onerror="this.src='${fallbackImg}'">
                 ${product.discount > 0 ? `<span class="product-badge">-${product.discount}%</span>` : ''}
                 <button class="product-wishlist" onclick="event.stopPropagation(); toggleWishlist(${product.id})">
                     ${isInWishlist(product.id) ? '❤️' : '🤍'}
