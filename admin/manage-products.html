@@ -40,6 +40,10 @@
                     <span class="icon">📞</span>
                     <span>Support</span>
                 </a>
+                <a href="#" class="admin-nav-link" onclick="adminLogout()">
+                    <span class="icon">🚪</span>
+                    <span>Logout</span>
+                </a>
             </nav>
         </aside>
 
@@ -234,6 +238,12 @@
             document.getElementById('product-count').textContent = adminProducts.length;
             renderAdminProducts();
         });
+        
+        function adminLogout() {
+            setCurrentUser(null);
+            showToast('Logged out successfully', 'success');
+            window.location.href = 'admin-login.html';
+        }
     </script>
 </body>
 </html>

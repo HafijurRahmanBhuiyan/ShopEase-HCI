@@ -218,8 +218,9 @@
             const user = getCurrentUser();
             
             if (user) {
+                const dashboardUrl = user.isAdmin ? 'admin/admin-dashboard.html' : 'user-dashboard.html';
                 authSection.innerHTML = `
-                    <a href="user-dashboard.html" style="font-weight: 600; color: var(--primary); text-decoration: none;">👤 ${user.name}</a>
+                    <a href="${dashboardUrl}" style="font-weight: 600; color: var(--primary); text-decoration: none;">👤 ${user.name}</a>
                     <button onclick="logout()" class="btn btn-secondary btn-sm">Logout</button>
                 `;
             } else {
